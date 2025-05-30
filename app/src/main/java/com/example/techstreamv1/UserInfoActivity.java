@@ -1,17 +1,19 @@
 package com.example.techstreamv1;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.ViewGroup;
 
 public class UserInfoActivity extends AppCompatActivity {
 
-    String[][] infoData = {
+    // Static sample data (replace with Firebase values later)
+    String[][] userInfo = {
             {"Username", "Krishan"},
             {"Email", "krishan@gmail.com"},
             {"Phone", "+94 76 123 1231"},
@@ -24,28 +26,39 @@ public class UserInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
-        // Optional profile image logic
-        ImageView profileImage = findViewById(R.id.profileImage);
-
-        // Assign dynamic data to each include
-        for (int i = 0; i < infoData.length; i++) {
-            int viewId = getResources().getIdentifier("row" + infoData[i][0].replace(" ", ""), "id", getPackageName());
-            ViewGroup rowLayout = findViewById(viewId);
-            if (rowLayout != null) {
-                TextView label = rowLayout.findViewById(R.id.labelText);
-                TextView value = rowLayout.findViewById(R.id.valueText);
-                label.setText(infoData[i][0]);
-                value.setText(infoData[i][1]);
+        // Populate info rows
+        for (String[] field : userInfo) {
+            String key = field[0];
+            String value = field[1];
+            int viewId = getResources().getIdentifier("row" + key.replace(" ", ""), "id", getPackageName());
+            ViewGroup row = findViewById(viewId);
+            if (row != null) {
+                TextView label = row.findViewById(R.id.labelText);
+                TextView val = row.findViewById(R.id.valueText);
+                label.setText(key);
+                val.setText(value);
             }
         }
 
-        Button btnEdit = findViewById(R.id.btnEdit);
+        // Back button
+        ImageView backArrow = findViewById(R.id.backArrow);
+        backArrow.setOnClickListener(v -> finish());
+
+        // Sign Out
         Button btnSignOut = findViewById(R.id.btnSignOut);
+        btnSignOut.setOnClickListener(v -> {
+            Toast.makeText(this, "Signed out", Toast.LENGTH_SHORT).show();
+            // Navigate to login if needed
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        });
 
-        btnEdit.setOnClickListener(v ->
-                Toast.makeText(this, "Edit Profile clicked", Toast.LENGTH_SHORT).show());
-
-        btnSignOut.setOnClickListener(v ->
-                Toast.makeText(this, "Signed out", Toast.LENGTH_SHORT).show());
+        // Edit Profile
+        Button btnEditProfile = findViewById(R.id.btnEditProfile);
+        btnEditProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(this, UserInfoEditActivity.class);
+            startActivity(intent);
+        });
     }
 }

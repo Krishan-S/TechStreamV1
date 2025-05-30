@@ -1,92 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:padding="24dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="24dp">
+    <!-- Back Arrow -->
+    <ImageView
+        android:id="@+id/backArrow"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="Back"
+        android:layout_alignParentStart="true" />
 
-        <!-- Profile Picture -->
+    <!-- Circular User Image with Maroon Border -->
+    <FrameLayout
+        android:id="@+id/profileFrame"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@id/backArrow"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/circle_border">
+
         <ImageView
             android:id="@+id/profileImage"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginBottom="24dp"
-            android:contentDescription="Profile Picture"
-            android:src="@drawable/ic_user_avatar" />
-
-        <!-- Info Card Container -->
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/rounded_card"
-            android:backgroundTint="#F5F5F5"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_user_avatar"
+            android:contentDescription="User Image"
+            android:clipToOutline="true" />
+    </FrameLayout>
 
-            <!-- Username Row -->
-            <include
-                android:id="@+id/rowUsername"
-                layout="@layout/row_info"
-                android:tag="Username|Krishan" />
+    <!-- Info Card -->
+    <LinearLayout
+        android:id="@+id/infoCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_card"
+        android:padding="16dp"
+        android:layout_below="@id/profileFrame">
 
-            <!-- Email Row -->
-            <include
-                android:id="@+id/rowEmail"
-                layout="@layout/row_info"
-                android:tag="Email|krishan@gmail.com" />
-
-            <!-- Phone Row -->
-            <include
-                android:id="@+id/rowPhone"
-                layout="@layout/row_info"
-                android:tag="Phone|+94 76 123 1231" />
-
-            <!-- Address Row -->
-            <include
-                android:id="@+id/rowAddress"
-                layout="@layout/row_info"
-                android:tag="Address|Homagama, Colombo Sri Lanka" />
-
-            <!-- DOB Row -->
-            <include
-                android:id="@+id/rowDOB"
-                layout="@layout/row_info"
-                android:tag="Date of Birth|January 10, 2000" />
-        </LinearLayout>
-
-        <!-- Buttons -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnSignOut"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_button"
-                android:text="Sign Out"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/btnEdit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_button_outline"
-                android:text="Edit Profile"
-                android:textColor="#7F1416" />
-        </LinearLayout>
+        <include layout="@layout/row_info" android:id="@+id/rowUsername" android:tag="Username|Krishan" />
+        <include layout="@layout/row_info" android:id="@+id/rowEmail" android:tag="Email|krishan@gmail.com" />
+        <include layout="@layout/row_info" android:id="@+id/rowPhone" android:tag="Phone|+94 76 123 1231" />
+        <include layout="@layout/row_info" android:id="@+id/rowAddress" android:tag="Address|Homagama, Colombo Sri Lanka" />
+        <include layout="@layout/row_info" android:id="@+id/rowDOB" android:tag="Date of Birth|January 10, 2000" />
     </LinearLayout>
-</ScrollView>
+
+    <!-- Button Row -->
+    <LinearLayout
+        android:id="@+id/buttonRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@id/infoCard"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="32dp">
+
+        <Button
+            android:id="@+id/btnSignOut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sign Out"
+            android:background="@drawable/rounded_button"
+            android:textColor="#FFFFFF"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnEditProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Edit Profile"
+            android:background="@drawable/rounded_button_outline"
+            android:textColor="#7F1416" />
+    </LinearLayout>
+
+</RelativeLayout>
