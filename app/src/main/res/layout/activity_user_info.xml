@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Profile Picture -->
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="Profile Picture"
+            android:src="@drawable/ic_user_avatar" />
+
+        <!-- Info Card Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/rounded_card"
+            android:backgroundTint="#F5F5F5"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Username Row -->
+            <include
+                android:id="@+id/rowUsername"
+                layout="@layout/row_info"
+                android:tag="Username|Krishan" />
+
+            <!-- Email Row -->
+            <include
+                android:id="@+id/rowEmail"
+                layout="@layout/row_info"
+                android:tag="Email|krishan@gmail.com" />
+
+            <!-- Phone Row -->
+            <include
+                android:id="@+id/rowPhone"
+                layout="@layout/row_info"
+                android:tag="Phone|+94 76 123 1231" />
+
+            <!-- Address Row -->
+            <include
+                android:id="@+id/rowAddress"
+                layout="@layout/row_info"
+                android:tag="Address|Homagama, Colombo Sri Lanka" />
+
+            <!-- DOB Row -->
+            <include
+                android:id="@+id/rowDOB"
+                layout="@layout/row_info"
+                android:tag="Date of Birth|January 10, 2000" />
+        </LinearLayout>
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSignOut"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_button"
+                android:text="Sign Out"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_button_outline"
+                android:text="Edit Profile"
+                android:textColor="#7F1416" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
