@@ -7,12 +7,14 @@
     android:padding="24dp"
     android:background="@android:color/white">
 
+    <!-- TechStream Logo -->
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/techstreamlogo" />
 
+    <!-- Sign Up Header -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +23,7 @@
         android:textStyle="bold"
         android:layout_marginBottom="24dp" />
 
+    <!-- Username Input -->
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
@@ -29,6 +32,7 @@
         android:inputType="textPersonName"
         android:layout_marginBottom="12dp" />
 
+    <!-- Email Input -->
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
@@ -37,6 +41,7 @@
         android:inputType="textEmailAddress"
         android:layout_marginBottom="12dp" />
 
+    <!-- Password Input -->
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
@@ -45,6 +50,7 @@
         android:inputType="textPassword"
         android:layout_marginBottom="12dp" />
 
+    <!-- Confirm Password Input -->
     <EditText
         android:id="@+id/etConfirmPassword"
         android:layout_width="match_parent"
@@ -53,6 +59,7 @@
         android:inputType="textPassword"
         android:layout_marginBottom="24dp" />
 
+    <!-- Sign Up Button -->
     <Button
         android:id="@+id/btnSignup"
         android:layout_width="match_parent"
@@ -62,6 +69,7 @@
         android:textColor="#FFFFFF"
         android:layout_marginBottom="16dp" />
 
+    <!-- Login Link -->
     <TextView
         android:id="@+id/loginLink"
         android:layout_width="wrap_content"
