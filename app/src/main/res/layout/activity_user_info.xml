@@ -14,7 +14,8 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_arrow_back"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:contentDescription="Back" />
 
     <!-- Profile Picture Frame -->
     <FrameLayout
@@ -23,7 +24,7 @@
         android:layout_height="140dp"
         android:layout_below="@id/backArrow"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/circle_border">
 
@@ -35,69 +36,86 @@
             android:scaleType="centerCrop"
             android:contentDescription="User Image"
             android:clipToOutline="true" />
-        <View
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center"
-            android:background="@drawable/profile_inner_circle" />
     </FrameLayout>
 
-    <!-- Info Card -->
-    <LinearLayout
-        android:id="@+id/infoCard"
-        android:layout_width="match_parent"
+    <!-- User Info Title -->
+    <TextView
+        android:id="@+id/userInfoTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/profileFrame"
-        android:orientation="vertical"
-        android:background="@drawable/rounded_card"
-        android:padding="16dp">
+        android:layout_centerHorizontal="true"
+        android:text="User Info"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="32dp" />
 
-        <!-- Username -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Username"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_marginBottom="8dp" />
+    <!-- Username Section -->
+    <TextView
+        android:id="@+id/usernameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userInfoTitle"
+        android:layout_marginStart="16dp"
+        android:text="Username"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="8dp" />
 
-        <EditText
-            android:id="@+id/editUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Username"
-            android:enabled="false"
-            android:background="@drawable/rounded_edittext"
-            android:layout_marginBottom="16dp" />
+    <TextView
+        android:id="@+id/usernameValue"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/usernameLabel"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Krishan"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#000000" />
 
-        <!-- Email -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_marginBottom="8dp" />
+    <!-- Email Section -->
+    <TextView
+        android:id="@+id/emailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/usernameValue"
+        android:layout_marginStart="16dp"
+        android:text="Email"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="8dp" />
 
-        <EditText
-            android:id="@+id/editEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Email"
-            android:enabled="false"
-            android:background="@drawable/rounded_edittext"
-            android:layout_marginBottom="16dp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/emailValue"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/emailLabel"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="krishan@gmail.com"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#000000" />
 
-    <!-- Action Buttons (Edit, Sign Out) -->
+    <!-- Action Buttons (Sign Out, Edit Profile) -->
     <LinearLayout
         android:id="@+id/buttonRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/infoCard"
-        android:layout_marginTop="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="32dp"
         android:orientation="horizontal"
         android:gravity="center">
 
@@ -118,38 +136,8 @@
             android:layout_weight="1"
             android:text="Edit Profile"
             android:textColor="#7F1416"
-            android:background="@drawable/rounded_button_outline" />
-    </LinearLayout>
-
-    <!-- Save / Cancel Buttons -->
-    <LinearLayout
-        android:id="@+id/editButtons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/infoCard"
-        android:layout_marginTop="32dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cancel"
-            android:textColor="#7F1416"
             android:background="@drawable/rounded_button_outline"
-            android:layout_marginEnd="8dp" />
-
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Save"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/rounded_button" />
+            android:layout_marginStart="8dp" />
     </LinearLayout>
 
     <!-- Edit Info Dialog Overlay -->
@@ -157,6 +145,14 @@
         android:id="@+id/dialogOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-24dp"
+        android:layout_marginStart="-24dp"
+        android:layout_marginEnd="-24dp"
+        android:layout_marginBottom="-24dp"
         android:background="#80000000"
         android:visibility="gone"
         android:clickable="true"
@@ -166,8 +162,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="8dp">
 
@@ -175,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#4A6B6B"
+                android:background="#8A1538"
                 android:padding="24dp">
 
                 <!-- Dialog Title -->
@@ -208,7 +204,7 @@
                     android:id="@+id/dialogEmail"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginBottom="24dp"
+                    android:layout_marginBottom="32dp"
                     android:background="@drawable/dialog_edittext_background"
                     android:hint="Email"
                     android:textColorHint="#999999"
@@ -229,7 +225,7 @@
                         android:id="@+id/btnDialogCancel"
                         android:layout_width="wrap_content"
                         android:layout_height="36dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="24dp"
                         android:text="Cancel"
                         android:textColor="@android:color/white"
                         android:background="?android:attr/selectableItemBackground"

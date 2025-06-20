@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TechStreamV1</string>
+    <string name="enter_email">Enter Email</string>
 </resources>
