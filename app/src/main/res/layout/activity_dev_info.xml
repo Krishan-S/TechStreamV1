@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -21,13 +22,14 @@
             android:id="@+id/backButton"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Back"
-            android:clickable="true"
-            android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="Back"
+            android:focusable="true"
             android:padding="4dp"
-            app:tint="#212121" />
+            android:src="@drawable/ic_arrow_back"
+            app:tint="#212121"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
 

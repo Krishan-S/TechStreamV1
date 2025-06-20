@@ -21,7 +21,7 @@ public class ActivityNews extends AppCompatActivity {
             startActivity(new Intent(ActivityNews.this, UserInfoEditActivity.class));  // Navigate to User Info Page
         });
 
-        /* Developer Info link to navigate to Developer Info Page */
+        // Developer Info link to navigate to Developer Info Page
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView developerInfoLink = findViewById(R.id.developerInfoLink);
         developerInfoLink.setOnClickListener(v -> {
             startActivity(new Intent(ActivityNews.this, ActivityDevInfo.class));  // Navigate to Developer Info Page

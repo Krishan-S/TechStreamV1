@@ -8,6 +8,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:8.10.1' // or your version
         classpath 'com.google.gms:google-services:4.4.1' // Firebase plugin
         classpath 'com.google.gms:google-services:4.4.0'
+        classpath 'com.google.gms:google-services:4.3.10'  // Check if Google services plugin is included
 
     }
 }

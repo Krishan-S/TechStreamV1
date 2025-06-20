@@ -33,6 +33,9 @@ dependencies {
     implementation libs.firebase.auth
     implementation libs.firebase.firestore
 
+    implementation libs.firebase.auth.v2101 // Firebase Authentication
+    implementation libs.firebase.database.v2003 // Firebase Realtime Database
+
     implementation(libs.google.firebase.firestore) {
         exclude group: 'com.google.firebase', module: 'firebase-common'
     }

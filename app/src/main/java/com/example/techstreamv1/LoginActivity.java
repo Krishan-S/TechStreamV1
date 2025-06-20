@@ -20,6 +20,7 @@ import android.graphics.Color;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -53,14 +54,23 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, ActivityNews.class));  // Navigate to News Page
-                            finish();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                // Navigate to the News Page
+                                Intent intent = new Intent(LoginActivity.this, ActivityNews.class);
+                                startActivity(intent);
+                                finish(); // Close LoginActivity so the user can't go back to it
+                            } else {
+                                Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             Toast.makeText(LoginActivity.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
+
         });
+
 
         // Signup link
         String text = "Don’t have an account? Sign Up";

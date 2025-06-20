@@ -3,7 +3,9 @@ agp = "8.10.1"
 firebaseAuthVersion = "22.3.0"
 firebaseBom = "33.15.0"
 firebaseDatabase = "21.0.0"
+firebaseDatabaseVersion = "20.0.3"
 firebaseFirestore = "25.1.4"
+googleFirebaseAuth = "21.0.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
@@ -13,9 +15,11 @@ firebaseAuth = "23.2.1"
 
 [libraries]
 com-google-firebase-firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
+firebase-auth-v2101 = { module = "com.google.firebase:firebase-auth", version.ref = "googleFirebaseAuth" }
 firebase-auth-v2230 = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuthVersion" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-database = { module = "com.google.firebase:firebase-database", version.ref = "firebaseDatabase" }
+firebase-database-v2003 = { module = "com.google.firebase:firebase-database", version.ref = "firebaseDatabaseVersion" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore", version.ref = "firebaseFirestore" }
 google-firebase-auth = { module = "com.google.firebase:firebase-auth" }
 google-firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
