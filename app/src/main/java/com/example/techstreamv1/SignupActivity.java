@@ -60,7 +60,9 @@ public class SignupActivity extends AppCompatActivity {
                     }
 
                     Toast.makeText(SignupActivity.this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SignupActivity.this, MainActivity.class));
+
+                    // Navigate directly to the News Screen (ActivityNews) after signup
+                    startActivity(new Intent(SignupActivity.this, ActivityNews.class));
                     finish();
                 } else {
                     Toast.makeText(SignupActivity.this, "Sign Up failed. Try again.", Toast.LENGTH_SHORT).show();

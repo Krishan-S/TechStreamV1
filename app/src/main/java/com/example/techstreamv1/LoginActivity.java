@@ -1,26 +1,23 @@
 package com.example.techstreamv1;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.text.TextPaint;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.Spanned;
-import android.graphics.Color;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,8 +31,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
 
+        // Match with XML IDs
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
@@ -54,16 +53,14 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if (user != null) {
-                                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                // Navigate to the News Page
-                                Intent intent = new Intent(LoginActivity.this, ActivityNews.class);
-                                startActivity(intent);
-                                finish(); // Close LoginActivity so the user can't go back to it
-                            } else {
-                                Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
-                            }
+                            Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+
+                            // Debug log
+                            Log.d("LoginActivity", "Login Successful. Navigating to News Screen.");
+
+                            // Navigate to ActivityNews
+                            startActivity(new Intent(LoginActivity.this, ActivityNews.class));
+                            finish(); // Close LoginActivity so the user can't go back to it
                         } else {
                             Toast.makeText(LoginActivity.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -71,8 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
-
-        // Signup link
+        // Signup link setup
         String text = "Don’t have an account? Sign Up";
         SpannableString ss = new SpannableString(text);
 
