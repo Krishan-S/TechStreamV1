@@ -2,31 +2,31 @@ package com.example.techstreamv1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.text.TextUtils;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.*;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth; // Firebase authentication instance
-    private EditText etUsername, etEmail, etPassword, etConfirmPassword; // EditText fields for user input
-    private Button btnSignup; // Sign Up button
-    private TextView loginLink; // Login Link (to navigate to LoginActivity)
+    private FirebaseAuth mAuth;
+    private DatabaseReference databaseRef;
+
+    private EditText etUsername, etEmail, etPassword, etConfirmPassword;
+    private Button btnSignup;
+    private TextView loginLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup); // Use the updated layout XML
+        setContentView(R.layout.activity_signup);
 
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        databaseRef = FirebaseDatabase.getInstance().getReference("users");
 
-        // Initialize UI elements
         etUsername = findViewById(R.id.etUsername);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
@@ -34,45 +34,40 @@ public class SignupActivity extends AppCompatActivity {
         btnSignup = findViewById(R.id.btnSignup);
         loginLink = findViewById(R.id.loginLink);
 
-        // Sign Up button click listener
         btnSignup.setOnClickListener(v -> {
-            String username = etUsername.getText().toString();
-            String email = etEmail.getText().toString();
-            String password = etPassword.getText().toString();
-            String confirmPassword = etConfirmPassword.getText().toString();
+            String username = etUsername.getText().toString().trim();
+            String email = etEmail.getText().toString().trim();
+            String password = etPassword.getText().toString().trim();
+            String confirmPassword = etConfirmPassword.getText().toString().trim();
 
-            if (password.equals(confirmPassword)) {
-                if (!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-                    signUp(email, password); // Call sign-up method
-                } else {
-                    Toast.makeText(SignupActivity.this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(SignupActivity.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+                Toast.makeText(SignupActivity.this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
 
-        // Login link click listener
-        loginLink.setOnClickListener(v -> {
-            // Navigate to Login Activity
-            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-        });
-    }
+            if (!password.equals(confirmPassword)) {
+                Toast.makeText(SignupActivity.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-    private void signUp(String email, String password) {
-        // Create a new user with Firebase Authentication
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        // Sign-up successful, show message and proceed
-                        Toast.makeText(SignupActivity.this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
-                        // Optionally, navigate to the home or user info page
-                        startActivity(new Intent(SignupActivity.this, MainActivity.class)); // Change to desired screen
-                        finish(); // Close this activity
-                    } else {
-                        // Sign-up failed, show error message
-                        Toast.makeText(SignupActivity.this, "Sign Up failed. Try again.", Toast.LENGTH_SHORT).show();
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    if (user != null) {
+                        String userId = user.getUid();
+                        databaseRef.child(userId).child("username").setValue(username);
+                        databaseRef.child(userId).child("email").setValue(email);
                     }
-                });
+
+                    Toast.makeText(SignupActivity.this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SignupActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(SignupActivity.this, "Sign Up failed. Try again.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+
+        loginLink.setOnClickListener(v -> startActivity(new Intent(SignupActivity.this, LoginActivity.class)));
     }
 }
