@@ -5,4 +5,5 @@
     <item name="userNameTextView" type="id" />
     <item name="userIdTextView" type="id" />
     <item name="aboutTextView" type="id" />
+    <item name="developerInfoLink" type="id" />
 </resources>
