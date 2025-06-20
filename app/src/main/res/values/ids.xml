@@ -2,4 +2,7 @@
 <resources>
     <item name="btnLogin" type="id" />
     <item name="signupLink" type="id" />
+    <item name="userNameTextView" type="id" />
+    <item name="userIdTextView" type="id" />
+    <item name="aboutTextView" type="id" />
 </resources>
