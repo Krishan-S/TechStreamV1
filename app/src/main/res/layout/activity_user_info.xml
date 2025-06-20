@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="24dp"
     android:background="@android:color/white"
-    android:padding="24dp">
+    tools:context=".UserInfoEditActivity">
 
     <!-- Back Arrow -->
     <ImageView
@@ -12,10 +13,9 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_arrow_back"
-        android:contentDescription="Back"
         android:layout_alignParentStart="true" />
 
-    <!-- Circular User Image with Maroon Border -->
+    <!-- Profile Picture Frame -->
     <FrameLayout
         android:id="@+id/profileFrame"
         android:layout_width="140dp"
@@ -30,8 +30,8 @@
             android:id="@+id/profileImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
             android:src="@drawable/ic_user_avatar"
+            android:scaleType="centerCrop"
             android:contentDescription="User Image"
             android:clipToOutline="true" />
     </FrameLayout>
@@ -41,28 +41,59 @@
         android:id="@+id/infoCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/profileFrame"
         android:orientation="vertical"
         android:background="@drawable/rounded_card"
-        android:padding="16dp"
-        android:layout_below="@id/profileFrame">
+        android:padding="16dp">
 
-        <include layout="@layout/row_info" android:id="@+id/rowUsername" android:tag="Username|Krishan" />
-        <include layout="@layout/row_info" android:id="@+id/rowEmail" android:tag="Email|krishan@gmail.com" />
-        <include layout="@layout/row_info" android:id="@+id/rowPhone" android:tag="Phone|+94 76 123 1231" />
-        <include layout="@layout/row_info" android:id="@+id/rowAddress" android:tag="Address|Homagama, Colombo Sri Lanka" />
-        <include layout="@layout/row_info" android:id="@+id/rowDOB" android:tag="Date of Birth|January 10, 2000" />
+        <!-- Username -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/editUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Username"
+            android:enabled="false"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Email -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Email"
+            android:enabled="false"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="16dp" />
     </LinearLayout>
 
-    <!-- Button Row -->
+    <!-- Action Buttons (Edit, Sign Out) -->
     <LinearLayout
         android:id="@+id/buttonRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_below="@id/infoCard"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="32dp">
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <Button
             android:id="@+id/btnSignOut"
@@ -70,8 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Sign Out"
-            android:background="@drawable/rounded_button"
             android:textColor="#FFFFFF"
+            android:background="@drawable/rounded_button"
             android:layout_marginEnd="8dp" />
 
         <Button
@@ -80,8 +111,39 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Edit Profile"
+            android:textColor="#7F1416"
+            android:background="@drawable/rounded_button_outline" />
+    </LinearLayout>
+
+    <!-- Save / Cancel Buttons -->
+    <LinearLayout
+        android:id="@+id/editButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/infoCard"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:textColor="#7F1416"
             android:background="@drawable/rounded_button_outline"
-            android:textColor="#7F1416" />
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Save"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rounded_button" />
     </LinearLayout>
 
 </RelativeLayout>
