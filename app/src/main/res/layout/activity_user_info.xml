@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
@@ -150,5 +151,107 @@
             android:textColor="#FFFFFF"
             android:background="@drawable/rounded_button" />
     </LinearLayout>
+
+    <!-- Edit Info Dialog Overlay -->
+    <FrameLayout
+        android:id="@+id/dialogOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#4A6B6B"
+                android:padding="24dp">
+
+                <!-- Dialog Title -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Info"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Dialog User Name Input -->
+                <EditText
+                    android:id="@+id/dialogUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/dialog_edittext_background"
+                    android:hint="User name"
+                    android:textColorHint="#999999"
+                    android:textColor="@android:color/black"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+                <!-- Dialog Email Input -->
+                <EditText
+                    android:id="@+id/dialogEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/dialog_edittext_background"
+                    android:hint="Email"
+                    android:textColorHint="#999999"
+                    android:textColor="@android:color/black"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+
+                <!-- Dialog Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end">
+
+                    <Button
+                        android:id="@+id/btnDialogCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="Cancel"
+                        android:textColor="@android:color/white"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textAllCaps="false"
+                        android:minWidth="80dp" />
+
+                    <Button
+                        android:id="@+id/btnDialogUpdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Update"
+                        android:textColor="@android:color/white"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textAllCaps="false"
+                        android:minWidth="80dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
 
 </RelativeLayout>
