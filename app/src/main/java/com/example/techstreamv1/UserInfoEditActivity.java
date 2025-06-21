@@ -153,8 +153,8 @@ public class UserInfoEditActivity extends AppCompatActivity {
 
             // Create a map of updates
             Map<String, Object> updates = new HashMap<>();
-            updates.put("username", "NewUsername");
-            updates.put("email", "newemail@example.com");
+            updates.put("username", username);
+            updates.put("email", email);
 
             if (username.isEmpty()) {
                 dialogUsername.setError("Username cannot be empty");
