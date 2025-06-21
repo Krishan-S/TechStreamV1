@@ -137,7 +137,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/news_image_placeholder"
+                        android:src="@drawable/news_image"
                         android:contentDescription="News Image" />
 
                     <!-- News Footer -->
